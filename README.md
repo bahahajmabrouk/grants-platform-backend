@@ -6,7 +6,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111-green?logo=fastapi)
 ![LLM](https://img.shields.io/badge/LLM-Groq%20LLaMA%203.3-orange)
 ![License](https://img.shields.io/badge/License-MIT-purple)
-![PFE](https://img.shields.io/badge/PFE-2025-red)
+
 
 ---
 

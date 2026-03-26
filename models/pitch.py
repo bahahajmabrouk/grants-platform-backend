@@ -40,3 +40,33 @@ class PitchListItem(BaseModel):
     stage: str
     created_at: datetime
     status: str
+
+
+# ── NEW: Embedding & Search Models ─────────────────────
+
+class PitchEmbeddingResponse(BaseModel):
+    """Réponse après embedding d'un pitch"""
+    status: str                   # "success" | "error"
+    pitch_id: str
+    message: str = ""
+    embedding_dim: int = 0
+    error: Optional[str] = None
+
+
+class SearchResult(BaseModel):
+    """Résultat de recherche d'un pitch similaire"""
+    pitch_id: str
+    similarity_score: float       # 0 à 1
+    startup_name: str
+    industry: str
+    stage: str
+    country: str
+
+
+class SearchResponse(BaseModel):
+    """Réponse de recherche de pitches"""
+    status: str                   # "success" | "error"
+    query: str
+    results_count: int
+    results: list[SearchResult] = []
+    error: Optional[str] = None

@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     # ChromaDB
     chroma_host: str = "chromadb"
     chroma_port: int = 8001
+    chroma_path: str = "./chroma_data"  # ✨ NOUVEAU
 
     # LangSmith
     langchain_tracing_v2: bool = False
@@ -38,6 +39,10 @@ class Settings(BaseSettings):
     extraction_model: str = "llama-3.3-70b-versatile"
     generation_model: str = "llama-3.3-70b-versatile"
     vision_model: str = "llama-3.3-70b-versatile"
+
+    # ✨ NOUVEAU: Embedding Settings
+    embedding_model: str = "all-MiniLM-L6-v2"
+    embedding_dim: int = 384
 
     # Upload
     upload_dir: str = "uploads"

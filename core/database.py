@@ -59,6 +59,34 @@ class PitchModel(Base):
     updated_at          = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
+# ── Table ChatbotConversation ─────────────────────────
+
+class ChatbotConversationModel(Base):
+    __tablename__ = "chatbot_conversations"
+
+    id              = Column(Integer, primary_key=True, index=True)
+    conversation_id = Column(String, unique=True, index=True, nullable=False)
+    user_id         = Column(Integer, nullable=True, index=True)
+    pitch_id        = Column(String, nullable=True, index=True)
+    messages        = Column(JSON, default=list)   # list of {role, content, timestamp}
+    evaluation_scores = Column(JSON, nullable=True)
+    created_at      = Column(DateTime, default=datetime.utcnow)
+    updated_at      = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+# ── Table ChatbotFeedback ─────────────────────────────
+
+class ChatbotFeedbackModel(Base):
+    __tablename__ = "chatbot_feedback"
+
+    id              = Column(Integer, primary_key=True, index=True)
+    conversation_id = Column(String, index=True, nullable=False)
+    user_id         = Column(Integer, nullable=True, index=True)
+    rating          = Column(Integer, nullable=False)   # 1–5
+    comment         = Column(Text, nullable=True)
+    created_at      = Column(DateTime, default=datetime.utcnow)
+
+
 def create_tables():
     """Créer toutes les tables si elles n'existent pas"""
     Base.metadata.create_all(bind=engine)

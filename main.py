@@ -6,7 +6,7 @@ import logging
 
 from core.config import settings
 from core.database import create_tables                       
-from routers import pitch, grants, submissions, search, auth
+from routers import pitch, grants, submissions, search, auth, chatbot
 
 # ── Logger Setup ───────────────────────────────────────
 logging.basicConfig(
@@ -27,6 +27,7 @@ app = FastAPI(
     - **🔍 Grants** — Recherche autonome de grants et compétitions
     - **📤 Submissions** — Soumission autonome via Browser Agent
     - **🔎 Search** — Recherche sémantique d'embeddings
+    - **🤖 Chatbot** — Évaluation de pitch et chat interactif avec Ollama
     """,
     version="0.1.0",
     docs_url="/docs",
@@ -50,6 +51,7 @@ app.include_router(pitch.router,        prefix="/api/v1")
 app.include_router(search.router,       prefix="/api/v1")
 app.include_router(grants.router,       prefix="/api/v1")
 app.include_router(submissions.router,  prefix="/api/v1")
+app.include_router(chatbot.router,      prefix="/api/v1")
 
 # ── Uploads statiques ─────────────────────────────────
 os.makedirs("uploads", exist_ok=True)
@@ -77,6 +79,7 @@ async def root():
             "search": "/api/v1/search",
             "grants": "/api/v1/grants",
             "submissions": "/api/v1/submissions",
+            "chatbot": "/api/v1/chatbot",
         }
     }
 
